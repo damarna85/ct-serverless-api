@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules
+
+#OS STUFF
+.DS_Store
+.tmp
+
+#SERVERLESS STUFF
+admin.env
+env.yml
+_meta
+.serverless
