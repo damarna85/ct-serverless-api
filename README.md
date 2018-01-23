@@ -35,6 +35,8 @@ Remember that you can deploy just the functions you need instead by executing:
 serverless deploy function --function myFunction
 ```
 
+Once deployed, you will see the links to your endpoints!🎉
+
 ## Built With
 
 * [serverless](https://serverless.com/framework/docs/providers/aws/guide/intro/) - serverless
