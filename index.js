@@ -8,13 +8,13 @@ const loginController = require('./controllers/login/login.controller');
 const app = express();
 
 // Help function to generate an IAM policy
-function generatePolicy(principalId, effect, resource) {
+const generatePolicy = (principalId, effect, resource) => {
   var authResponse = {};
 
   authResponse.principalId = principalId;
   if (effect && resource) {
     var policyDocument = {};
-    policyDocument.Version = '1.0.0';
+    policyDocument.Version = '2012-10-17';
     policyDocument.Statement = [];
     var statementOne = {};
     statementOne.Action = 'execute-api:Invoke';
@@ -25,9 +25,13 @@ function generatePolicy(principalId, effect, resource) {
   }
 
   // Optional output with custom properties of the String, Number or Boolean type.
-  authResponse.context = {};
+  authResponse.context = {
+    stringKey: 'stringval',
+    numberKey: 123,
+    booleanKey: true,
+  };
   return authResponse;
-}
+};
 
 app.use(bodyParser.json({ strict: false }));
 
@@ -41,8 +45,8 @@ const authorize = (event, context, callback) => {
     // Verify JWT
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.userId;
-
-    callback(null, generatePolicy(userId, 'Allow', event.methodArn));
+    const authResponse = generatePolicy(userId, 'Allow', event.methodArn);
+    callback(null, authResponse);
   } catch (e) {
     callback('Unauthorized'); // Return a 401 Unauthorized response
   }
