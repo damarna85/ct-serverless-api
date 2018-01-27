@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { client } = require('../../clients/commercetools');
+const { client } = require('../../clients/commercetools/client');
 
 module.exports = (req, res) => {
   const { email, password } = req.body;

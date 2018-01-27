@@ -2,7 +2,6 @@ const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const { client } = require('./clients/commercetools');
 const myOrdersController = require('./controllers/my-account/my-orders.controller');
 const loginController = require('./controllers/login/login.controller');
 const app = express();
