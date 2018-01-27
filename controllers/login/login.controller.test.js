@@ -1,4 +1,4 @@
-import { response } from 'jest-mock-express';
+import response from '../../test-utils/response';
 import login from './login.controller.js';
 import { client } from '../../clients/commercetools/client';
 jest.mock('../../clients/commercetools/client');

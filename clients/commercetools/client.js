@@ -10,4 +10,4 @@ const client = new SphereClient({
   oauth_host: 'auth.commercetools.com',
 });
 
-module.exports.client = client;
+module.exports = { client };
