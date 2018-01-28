@@ -9,6 +9,6 @@ module.exports = (req, res) => {
     .where(`customerId="${customerId}"`)
     .fetch()
     .then(function(orders) {
-      res.send(JSON.stringify(orders));
+      res.json(orders);
     });
 };

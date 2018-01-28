@@ -22,7 +22,7 @@ module.exports = (req, res) => {
           expiresIn: process.env.JWT_EXPIRATION_TIME,
         }
       );
-      res.send(token);
+      res.json({ token });
     })
     .catch(err => {
       res.status(400).send('Invalid credentials');

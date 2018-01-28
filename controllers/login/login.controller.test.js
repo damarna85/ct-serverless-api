@@ -2,6 +2,9 @@ import response from '../../test-utils/response';
 import login from './login.controller.js';
 import { client } from '../../clients/commercetools/client';
 jest.mock('../../clients/commercetools/client');
+jest.mock('jsonwebtoken', () => ({
+  sign: jest.fn(() => 'my-generated-token'),
+}));
 
 const createRequest = req => ({
   body: { password: 'yeah!' },
@@ -73,6 +76,11 @@ describe('login', () => {
           email: req.body.email,
           password: req.body.password,
         });
+      });
+
+      it('should return the credentials to the client', () => {
+        expect(res.json).toHaveBeenCalledTimes(1);
+        expect(res.json).toHaveBeenCalledWith({ token: 'my-generated-token' });
       });
     });
   });
