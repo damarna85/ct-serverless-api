@@ -4,9 +4,9 @@ service: my-express-application
 
 provider:
   name: aws
-  environment: ${file(./env.yml)}
+  environment: ${file(./env.${self:provider.stage}.yml)}
   runtime: nodejs6.10
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-1
 
 functions:
@@ -26,3 +26,5 @@ functions:
             name: authorize
             identitySource: method.request.header.Authorization
             type: token
+plugins:
+  - serverless-offline
