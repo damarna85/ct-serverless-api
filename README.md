@@ -6,28 +6,37 @@ Just a basic example of some endpoints in serverless integrating the commercetoo
 ### Prerequisites
 
 First of all you will need an AWS account to make this project work. Once created, you will have to configure your account locally and install serverless.
+
 The installation guide can be found [here](https://serverless.com/framework/docs/providers/aws/guide/installation/)
+
 To configure your AWS account locally, you can find some tips [here](https://serverless.com/framework/docs/providers/aws/guide/credentials/)
 
 ### Setting your env variables and deploying
 
-Once your AWS account is created and serverless is properly set up locally, to run the example copy the `env.example.yml` to a local `env.yml` and set there your config keys. In this case you will need the keys from commercetools and configure JWT data for your access token.
-
+Once your AWS account is created and serverless is properly set up locally, to run the example copy the `env.example.yml` to a local `env.dev.yml` and set there your config keys. In this case you will need the keys from commercetools and configure JWT data for your access token.
 ```
 # commercetools credentials
 CLIENT_SECRET: <your client secret here>
 CLIENT_ID: <your client id here>
 PROJECT_KEY: <your project key here>
+API_HOST: <api host>
+API_HOST: <auth host>
 
 # jwt config
 JWT_SECRET: <secret for your jwt config>
 JWT_EXPIRATION_TIME: <expiration time for token>
 ```
 
-Once your `env.yml` is created, you can now deploy by executing:
+Once your `env.dev.yml` is created, you can now deploy by executing:
 ```
-sls deploy
+yarn deploy
 ```
+
+In order to make things easier, you can deploy your API serverless **locally** by executing the following command:
+```
+yarn deploy:local
+```
+
 
 Remember that you can deploy just the functions you need instead by executing:
 
